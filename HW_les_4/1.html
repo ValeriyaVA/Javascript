@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Homework</title>
+</head>
+
+<body>
+  <!--
+Обязательное задание.
+
+Необходимо данное задание выполнить в es5 стиле и в es6 стиле.
+Необходимо создать функцию-конструктор/класс для продукта.
+Названия: `ProductES5` для es5 стиля, `ProductES6` для es6 стиля.
+При создании объекта от функции-конструктора/класса необходимо передавать имя
+и цену товара, эта информация должна быть сохранена в объекте.
+Также у объекта должна быть возможность выполнить метод `make25Discount`, данный
+метод должен уменьшать стоимость продукта на 25%.
+Необходимо продемонстрировать работу с объектом (в свободной форме).
+-->
+  <script>
+    "use strict";
+
+    function ProductES5(name, price) {
+      this.name = name;
+      this.price = price;
+    }
+    // добавим метод для уменьшения стоимости продукта
+    ProductES5.prototype.make25Discount = function () {
+      this.price *= 0.75;
+    };
+
+    // оформим класс
+    class ProductES6 {
+      constructor(name, price) {
+        this.name = name;
+        this.price = price;
+      }
+
+      //тут тоже пропишем метод уменьнения стоимости
+      make25Discount() {
+        this.price *= 0.75;
+      }
+      // интереса ради пропишу тут другой метод, которого нет в ES5, чтобы посмотреть на ошибку
+      get_data() {
+        console.log(`Метод из класса: название: ${this.name}, цена: ${this.price}`)
+      }
+    }
+
+    // создадим объекты ProductES5 и ProductES6
+    const productES5 = new ProductES5('product1', 5000);
+    const productES6 = new ProductES6('product2', 10000);
+    // посмотрим название и цену в каждом объекте
+    console.log(`Название: ${productES5.name}, цена: ${productES5.price}`);
+    console.log(`Название: ${productES6.name}, цена: ${productES6.price}`);
+    // изменим стоимость в обоих объектах
+    productES5.make25Discount();
+    productES6.make25Discount();
+    // посмотрим ещё раз
+    console.log(`Название: ${productES5.name}, цена: ${productES5.price}`);
+    console.log(`Название: ${productES6.name}, цена: ${productES6.price}`);
+    productES6.get_data()
+    // что и ожидалось, функция не нашлась
+    // productES5.get_data()
+
+  </script>
+</body>
+
+</html>
